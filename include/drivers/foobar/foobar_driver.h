@@ -1,5 +1,5 @@
 /*PGR-GNU*****************************************************************
-File: ksp_driver.h
+File: foobar_driver.h
 
 Copyright (c) 2015 Celia Virginia Vergara Castillo
 Mail: vicky_vergara@hotmail.com
@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 ********************************************************************PGR-GNU*/
 
-#ifndef INCLUDE_DRIVERS_YEN_KSP_DRIVER_H_
-#define INCLUDE_DRIVERS_YEN_KSP_DRIVER_H_
+#ifndef INCLUDE_DRIVERS_FOOBAR_FOOBAR_DRIVER_H_
+#define INCLUDE_DRIVERS_FOOBAR_FOOBAR_DRIVER_H_
 #pragma once
 
 /* for size-t */
@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 extern "C" {
 #endif
 
-    void  do_pgr_ksp(
+    void  do_pgr_foobar(
             pgr_edge_t  *data_edges,
             size_t total_edges,
             int64_t  start_vid,
@@ -59,4 +59,4 @@ extern "C" {
 }
 #endif
 
-#endif  // INCLUDE_DRIVERS_YEN_KSP_DRIVER_H_
+#endif  // INCLUDE_DRIVERS_FOOBAR_FOOBAR_DRIVER_H_
