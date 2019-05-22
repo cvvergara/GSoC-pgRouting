@@ -1,5 +1,5 @@
 /*PGR-GNU*****************************************************************
-File: ksp.c
+File: foobar.c
 
 Copyright (c) 2015 Celia Virginia Vergara Castillo
 vicky_vergara@hotmail.com
@@ -33,11 +33,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 #include "drivers/yen/ksp_driver.h"
 
-PGDLLEXPORT Datum kshortest_path(PG_FUNCTION_ARGS);
-PG_FUNCTION_INFO_V1(kshortest_path);
+PGDLLEXPORT Datum foobar(PG_FUNCTION_ARGS);
+PG_FUNCTION_INFO_V1(foobar);
 
 static
-void compute(
+void process(
         char* edges_sql,
         int64_t start_vertex,
         int64_t end_vertex,
@@ -81,7 +81,7 @@ void compute(
     char *notice_msg = NULL;
     char *err_msg = NULL;
 
-    do_pgr_ksp(
+    do_pgr_foobar(
             edges,
             total_edges,
             start_vertex,
@@ -117,7 +117,7 @@ void compute(
 
 
 PGDLLEXPORT Datum
-kshortest_path(PG_FUNCTION_ARGS) {
+foobar(PG_FUNCTION_ARGS) {
     FuncCallContext     *funcctx;
     TupleDesc            tuple_desc;
     General_path_element_t      *path = NULL;
@@ -130,7 +130,7 @@ kshortest_path(PG_FUNCTION_ARGS) {
 
 
         /*
-           CREATE OR REPLACE FUNCTION _pgr_ksp(
+           CREATE OR REPLACE FUNCTION _pgr_foobar(
            sql text,
            start_vid bigint,
            end_vid bigint,
@@ -139,7 +139,7 @@ kshortest_path(PG_FUNCTION_ARGS) {
            heap_paths boolean
            */
         PGR_DBG("Calling process");
-        compute(
+        process(
                 text_to_cstring(PG_GETARG_TEXT_P(0)),
                 PG_GETARG_INT64(1),
                 PG_GETARG_INT64(2),
