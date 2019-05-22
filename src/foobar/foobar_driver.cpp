@@ -1,5 +1,5 @@
 /*PGR-GNU*****************************************************************
-File: ksp_driver.cpp
+File: foobar_driver.cpp
 
 Copyright (c) 2015 Celia Virginia Vergara Castillo
 vicky_vergara@hotmail.com
@@ -23,13 +23,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ********************************************************************PGR-GNU*/
 
 
-#include "drivers/yen/ksp_driver.h"
+#include "drivers/foobar/foobar_driver.h"
 
 #include <sstream>
 #include <deque>
 #include <vector>
 
+#if 0
 #include "yen/pgr_ksp.hpp"
+#endif
 
 #include "cpp_common/pgr_alloc.hpp"
 #include "cpp_common/pgr_assert.h"
@@ -37,10 +39,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #include "cpp_common/pgr_base_graph.hpp"
 
 
+#if 0
 using pgrouting::yen::Pgr_ksp;
+#endif
 
 
-void  do_pgr_ksp(
+void  do_pgr_foobar(
         pgr_edge_t *data_edges,
         size_t total_edges,
         int64_t  start_vid,
@@ -72,12 +76,16 @@ void  do_pgr_ksp(
             pgrouting::DirectedGraph digraph(gType);
             Pgr_ksp< pgrouting::DirectedGraph > fn_yen;
             digraph.insert_edges(data_edges, total_edges);
+#if 0
             paths = fn_yen.Yen(digraph, start_vid, end_vid, k, heap_paths);
+#endif
         } else {
             pgrouting::UndirectedGraph undigraph(gType);
             Pgr_ksp< pgrouting::UndirectedGraph > fn_yen;
             undigraph.insert_edges(data_edges, total_edges);
+#if 0
             paths = fn_yen.Yen(undigraph, start_vid, end_vid, k, heap_paths);
+#endif
         }
 
 
