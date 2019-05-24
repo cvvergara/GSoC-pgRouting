@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 #include "c_common/edges_input.h"
 
-#include "drivers/yen/ksp_driver.h"
+#include "drivers/foobar/foobar_driver.h"
 
 PGDLLEXPORT Datum foobar(PG_FUNCTION_ARGS);
 PG_FUNCTION_INFO_V1(foobar);
