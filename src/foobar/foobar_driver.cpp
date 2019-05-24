@@ -75,14 +75,18 @@ void  do_pgr_foobar(
 
         if (directed) {
             pgrouting::DirectedGraph digraph(gType);
+#if 0
             Pgr_ksp< pgrouting::DirectedGraph > fn_yen;
+#endif
             digraph.insert_edges(data_edges, total_edges);
 #if 0
             paths = fn_yen.Yen(digraph, start_vid, end_vid, k, heap_paths);
 #endif
         } else {
             pgrouting::UndirectedGraph undigraph(gType);
+#if 0
             Pgr_ksp< pgrouting::UndirectedGraph > fn_yen;
+#endif
             undigraph.insert_edges(data_edges, total_edges);
 #if 0
             paths = fn_yen.Yen(undigraph, start_vid, end_vid, k, heap_paths);
