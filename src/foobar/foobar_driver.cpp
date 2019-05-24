@@ -69,6 +69,8 @@ void  do_pgr_foobar(
         pgassert(*return_count == 0);
         pgassert(total_edges != 0);
 
+        // TODO(vicky): use/remove parameters: start_vid, end_vid, k, heap_paths
+
         graphType gType = directed? DIRECTED: UNDIRECTED;
 
         std::deque< Path > paths;
