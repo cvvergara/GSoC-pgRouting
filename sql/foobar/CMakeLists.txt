@@ -1,7 +1,7 @@
 
 SET(LOCAL_FILES
-    foobar.sql
     _foobar.sql
+    foobar.sql
     )
 
 foreach (f ${LOCAL_FILES})
