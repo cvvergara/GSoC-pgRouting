@@ -1,0 +1,26 @@
+BEGIN;
+BEGIN
+SET client_min_messages TO NOTICE;
+SET
+--q1
+SELECT * FROM pgr_foobar(
+     \'SELECT id, source, target, cost, reverse_cost FROM edge_table\',
+      2, 12, 2,
+      directed:=true
+   );
+ seq | path_id | path_seq | node | edge | cost | agg_cost
+-----+---------+----------+------+------+------+----------
+(0 rows)
+
+--q2
+SELECT * FROM pgr_foobar(
+     \'SELECT id, source, target, cost, reverse_cost FROM edge_table\',
+      2, 12, 2
+   );
+ seq | path_id | path_seq | node | edge | cost | agg_cost
+-----+---------+----------+------+------+------+----------
+(0 rows)
+
+--q3
+ROLLBACK;
+ROLLBACK
