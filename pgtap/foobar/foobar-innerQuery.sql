@@ -13,13 +13,13 @@ SELECT function_returns('pgr_foobar',
 
 -- parameter names
 SELECT set_eq(
-    $$SELECT  proargnames from pg_proc where proname = 'pgr_foobar'$$,
+    $$SELECT  proargnames FROM pg_proc WHERE proname = 'pgr_foobar'$$,
     $$SELECT  '{"","","","","directed","heap_paths","seq","path_id","path_seq","node","edge","cost","agg_cost"}'::TEXT[] $$
 );
 
 -- parameter types
 SELECT set_eq(
-    $$SELECT  proallargtypes from pg_proc where proname = 'pgr_foobar'$$,
+    $$SELECT  proallargtypes FROM pg_proc WHERE proname = 'pgr_foobar'$$,
     $$SELECT  '{25,20,20,23,16,16,23,23,23,20,20,701,701}'::OID[] $$
 );
 
