@@ -25,7 +25,7 @@ SELECT set_eq(
 
 
 -- ONE TO ONE
-SELECT style_dijkstra('pgr_ksp', ',2,3,2, true, false)');
+SELECT style_dijkstra('pgr_foobar', ',2,3,2, true, false)');
 
 
 SELECT finish();
