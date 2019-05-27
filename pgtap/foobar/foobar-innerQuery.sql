@@ -4,28 +4,30 @@ SELECT plan(50);
 
 
 SELECT has_function('pgr_foobar');
+SELECT todo_start('design needs to work');
 SELECT has_function('pgr_foobar',
-    ARRAY['text', 'bigint', 'bigint', 'integer', 'boolean', 'boolean']);
+    ARRAY['text', 'bigint', 'bigint', 'integer', 'boolean', 'bigint']);
 
 SELECT function_returns('pgr_foobar',
-    ARRAY['text', 'bigint', 'bigint', 'integer', 'boolean', 'boolean'],
+    ARRAY['text', 'bigint', 'bigint', 'integer', 'boolean', 'bigint'],
     'setof record');
 
 -- parameter names
 SELECT set_eq(
     $$SELECT  proargnames FROM pg_proc WHERE proname = 'pgr_foobar'$$,
-    $$SELECT  '{"","","","","directed","heap_paths","seq","path_id","path_seq","node","edge","cost","agg_cost"}'::TEXT[] $$
+    $$SELECT  '{"","","","","directed","number","seq","path_id","path_seq","node","edge","cost"}'::TEXT[] $$
 );
 
 -- parameter types
 SELECT set_eq(
     $$SELECT  proallargtypes FROM pg_proc WHERE proname = 'pgr_foobar'$$,
-    $$SELECT  '{25,20,20,23,16,16,23,23,23,20,20,701,701}'::OID[] $$
+    $$SELECT  '{25,20,20,23,16,20,23,23,23,20,20,701}'::OID[] $$
 );
 
 
 -- ONE TO ONE
-SELECT style_dijkstra('pgr_foobar', ',2,3,2, true, false)');
+SELECT style_dijkstra('pgr_foobar', ',2,3, true, 3)');
+SELECT todo_end();
 
 
 SELECT finish();

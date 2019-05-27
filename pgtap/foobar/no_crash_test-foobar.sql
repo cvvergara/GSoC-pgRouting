@@ -27,14 +27,12 @@ BEGIN
     params = ARRAY[
     '$$SELECT id, source, target, cost, reverse_cost  FROM edge_table$$'
     ,'1::BIGINT',
-    '2::BIGINT',
-    '3'
+    '2::BIGINT'
     ]::TEXT[];
     subs = ARRAY[
     'NULL',
     '(SELECT id FROM edge_table_vertices_pgr  WHERE id IN (-1))',
-    '(SELECT id FROM edge_table_vertices_pgr  WHERE id IN (-1))',
-    'NULL::INTEGER'
+    '(SELECT id FROM edge_table_vertices_pgr  WHERE id IN (-1))'
     ]::TEXT[];
 
     PERFORM todo_start('query must return results');
@@ -43,8 +41,7 @@ BEGIN
     subs = ARRAY[
     'NULL',
     'NULL::BIGINT',
-    'NULL::BIGINT',
-    'NULL::INTEGER'
+    'NULL::BIGINT'
     ]::TEXT[];
     RETURN query SELECT * FROM no_crash_test('pgr_foobar', params, subs);
     PERFORM todo_end();
