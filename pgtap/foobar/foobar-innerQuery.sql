@@ -4,7 +4,6 @@ SELECT plan(50);
 
 
 SELECT has_function('pgr_foobar');
-SELECT todo_start('design needs to work');
 SELECT has_function('pgr_foobar',
     ARRAY['text', 'bigint', 'bigint', 'boolean', 'bigint']);
 
@@ -27,7 +26,6 @@ SELECT set_eq(
 
 -- ONE TO ONE
 SELECT style_dijkstra('pgr_foobar', ',2,3, true, 3)');
-SELECT todo_end();
 
 
 SELECT finish();
