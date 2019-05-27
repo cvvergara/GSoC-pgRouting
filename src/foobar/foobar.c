@@ -42,16 +42,10 @@ void process(
         int64_t start_vertex,
         int64_t end_vertex,
 
-        int p_k,
         bool directed,
-        bool heap_paths,
+        int64_t number,
         General_path_element_t **result_tuples, size_t *result_count) {
     pgr_SPI_connect();
-    if (p_k < 0) {
-        return;
-    }
-
-    size_t k = (size_t)p_k;
 
     PGR_DBG("Load data");
     pgr_edge_t *edges = NULL;
@@ -73,8 +67,7 @@ void process(
     }
 
 
-    PGR_DBG("Calling do_pgr_ksp\n");
-    PGR_DBG("heap_paths = %i\n", heap_paths);
+    PGR_DBG("Calling do_pgr_foobar\n");
 
     clock_t start_t = clock();
     char *log_msg = NULL;
@@ -86,15 +79,15 @@ void process(
             total_edges,
             start_vertex,
             end_vertex,
-            k,
             directed,
-            heap_paths,
+            number,
+
             result_tuples,
             result_count,
             &log_msg,
             &notice_msg,
             &err_msg);
-    time_msg(" processing KSP", start_t, clock());
+    time_msg(" processing foobar", start_t, clock());
 
     if (err_msg && (*result_tuples)) {
         pfree(*result_tuples);
@@ -134,18 +127,16 @@ foobar(PG_FUNCTION_ARGS) {
            sql text,
            start_vid bigint,
            end_vid bigint,
-           k integer,
            directed boolean,
-           heap_paths boolean
+           number bigint
            */
         PGR_DBG("Calling process");
         process(
                 text_to_cstring(PG_GETARG_TEXT_P(0)),
                 PG_GETARG_INT64(1),
                 PG_GETARG_INT64(2),
-                PG_GETARG_INT32(3),
-                PG_GETARG_BOOL(4),
-                PG_GETARG_BOOL(5),
+                PG_GETARG_BOOL(3),
+                PG_GETARG_INT64(4),
                 &path,
                 &result_count);
         PGR_DBG("Total number of tuples to be returned %ld \n", result_count);
@@ -181,12 +172,12 @@ foobar(PG_FUNCTION_ARGS) {
         Datum *values;
         bool* nulls;
 
-        values = palloc(7 * sizeof(Datum));
-        nulls = palloc(7 * sizeof(bool));
+        values = palloc(6 * sizeof(Datum));
+        nulls = palloc(6 * sizeof(bool));
 
 
         size_t i;
-        for (i = 0; i < 7; ++i) {
+        for (i = 0; i < 6; ++i) {
             nulls[i] = false;
         }
 
@@ -196,7 +187,6 @@ foobar(PG_FUNCTION_ARGS) {
         values[3] = Int64GetDatum(path[funcctx->call_cntr].node);
         values[4] = Int64GetDatum(path[funcctx->call_cntr].edge);
         values[5] = Float8GetDatum(path[funcctx->call_cntr].cost);
-        values[6] = Float8GetDatum(path[funcctx->call_cntr].agg_cost);
 
         tuple = heap_form_tuple(tuple_desc, values, nulls);
         result = HeapTupleGetDatum(tuple);
