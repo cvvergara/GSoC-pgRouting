@@ -2,7 +2,7 @@
 
    SELECT * FROM pgr_foobar(
      'SELECT id, source, target, cost, reverse_cost FROM edge_table',
-      2, 12, 2,
+      2, 12,
       directed:=true
    );
 
@@ -10,7 +10,8 @@
 
    SELECT * FROM pgr_foobar(
      'SELECT id, source, target, cost, reverse_cost FROM edge_table',
-      2, 12, 2
+      2, 12,
+      number := 3
    );
 
 \echo --q3
