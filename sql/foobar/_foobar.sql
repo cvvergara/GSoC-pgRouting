@@ -31,24 +31,22 @@ CREATE OR REPLACE FUNCTION _pgr_foobar(
     edges_sql TEXT,
     start_vid BIGINT,
     end_vid BIGINT,
-    k INTEGER,
 
     directed BOOLEAN,
-    heap_paths BOOLEAN,
+    number BOOLEAN,
 
     OUT seq INTEGER,
     OUT path_id INTEGER,
     OUT path_seq INTEGER,
     OUT node BIGINT,
     OUT edge BIGINT,
-    OUT cost FLOAT,
-    OUT agg_cost FLOAT)
+    OUT cost FLOAT)
 RETURNS SETOF RECORD AS
 'MODULE_PATHNAME', 'foobar'
 LANGUAGE C VOLATILE STRICT;
 
 -- COMMENTS
 
-COMMENT ON FUNCTION _pgr_foobar(TEXT, BIGINT, BIGINT, INTEGER, BOOLEAN, BOOLEAN)
+COMMENT ON FUNCTION _pgr_foobar(TEXT, BIGINT, BIGINT, BOOLEAN, BIGINT)
 IS 'pgRouting internal function';
 

@@ -26,22 +26,20 @@ CREATE OR REPLACE FUNCTION pgr_foobar(
     TEXT, -- edges_sql (required)
     BIGINT, -- from_vids (required)
     BIGINT,   -- to_vids (required)
-    INTEGER, -- K (required)
 
     directed BOOLEAN DEFAULT true,
-    heap_paths BOOLEAN DEFAULT false,
+    number BIGINT DEFAULT 0,
 
     OUT seq INTEGER,
     OUT path_id INTEGER,
     OUT path_seq INTEGER,
     OUT node BIGINT,
     OUT edge BIGINT,
-    OUT cost FLOAT,
-    OUT agg_cost FLOAT)
+    OUT cost FLOAT)
 RETURNS SETOF RECORD AS
 $BODY$
     SELECT *
-    FROM _pgr_foobar(_pgr_get_statement($1), $2, $3, $4, $5, $6);
+    FROM _pgr_foobar(_pgr_get_statement($1), $2, $3, $4, $5);
 $BODY$
 LANGUAGE SQL VOLATILE STRICT
 COST 100
@@ -49,16 +47,15 @@ ROWS 1000;
 
 -- COMMENTS
 
-COMMENT ON FUNCTION pgr_foobar(TEXT, BIGINT, BIGINT, INTEGER, BOOLEAN, BOOLEAN)
+COMMENT ON FUNCTION pgr_foobar(TEXT, BIGINT, BIGINT, BOOLEAN, BIGINT)
 IS 'pgr_foobar
 - Parameters:
     - Edges SQL with columns: id, source, target, cost [,reverse_cost]
     - From vertex identifier
     - To vertex identifier
-    - K
 - Optional Parameters
     - directed := true
-    - heap_paths := false
+    - number := 0
 - Documentation:
     - ${PGROUTING_DOC_LINK}/pgr_foobar.html
 ';
