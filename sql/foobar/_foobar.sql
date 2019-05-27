@@ -33,7 +33,7 @@ CREATE OR REPLACE FUNCTION _pgr_foobar(
     end_vid BIGINT,
 
     directed BOOLEAN,
-    number BOOLEAN,
+    number BIGINT,
 
     OUT seq INTEGER,
     OUT path_id INTEGER,

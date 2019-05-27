@@ -50,9 +50,8 @@ void  do_pgr_foobar(
         size_t total_edges,
         int64_t  start_vid,
         int64_t  end_vid,
-        size_t k,
         bool directed,
-        bool heap_paths,
+        int64_t number,
         General_path_element_t **return_tuples,
         size_t *return_count,
         char ** log_msg,
@@ -69,7 +68,7 @@ void  do_pgr_foobar(
         pgassert(*return_count == 0);
         pgassert(total_edges != 0);
 
-        // TODO(vicky): use/remove parameters: start_vid, end_vid, k, heap_paths
+        // TODO(vicky): use/remove parameters: start_vid, end_vid, number
 
         graphType gType = directed? DIRECTED: UNDIRECTED;
 
